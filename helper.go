@@ -1,18 +1,16 @@
-package helperLibrary
+package helper
 
 import "strings"
 
-type Helper struct {}
-
-func (*Helper) KnownResult() string {
+func KnownResult() string {
 	return "known"
 }
 
-func (*Helper) GetSomeCoolResult() string {
+func GetSomeCoolResult() string {
 	return "expectation"
 }
 
-func (*Helper) FilterIgnoreList(list []string, ignoreList []string) []string {
+func FilterIgnoreList(list []string, ignoreList []string) []string {
 	var remainingItems []string
 
 	for _, v := range list {
@@ -30,7 +28,7 @@ func (*Helper) FilterIgnoreList(list []string, ignoreList []string) []string {
 	return remainingItems
 }
 
-func (*Helper) BuildArrayFromCsv(values string) []string {
+func BuildArrayFromCsv(values string) []string {
 	var cleanUpResults []string
 	splitValues := strings.Split(values, ",")
 	for _, v := range splitValues {
@@ -39,7 +37,7 @@ func (*Helper) BuildArrayFromCsv(values string) []string {
 	return cleanUpResults
 }
 
-func (*Helper) RemoveListOneFromListTwo(listOne []string, listTwo []string) []string {
+func RemoveListOneFromListTwo(listOne []string, listTwo []string) []string {
 	var returnList []string
 	for _, listOneItem := range listOne {
 		exists := false
@@ -55,7 +53,7 @@ func (*Helper) RemoveListOneFromListTwo(listOne []string, listTwo []string) []st
 	return returnList
 }
 
-func (*Helper) RemoveItemsWithPrefixFromList(list []string, itemPrefix string) []string {
+func RemoveItemsWithPrefixFromList(list []string, itemPrefix string) []string {
 	var returnList []string
 	for _, v := range list {
 		if !strings.HasPrefix(v, itemPrefix) {
@@ -65,7 +63,7 @@ func (*Helper) RemoveItemsWithPrefixFromList(list []string, itemPrefix string) [
 	return returnList
 }
 
-func (*Helper) RemoveItemsWithPostfixFromList(list []string, itemSuffix string) []string {
+func RemoveItemsWithPostfixFromList(list []string, itemSuffix string) []string {
 	var returnList []string
 	for _, v := range list {
 		if !strings.HasSuffix(v, itemSuffix) {
@@ -75,12 +73,11 @@ func (*Helper) RemoveItemsWithPostfixFromList(list []string, itemSuffix string) 
 	return returnList
 }
 
-func (*Helper) RemovePrefixItems(list []string, prefix string) []string {
-	var helper Helper
-	return helper.RemovePrefixAndOrSuffixItems(list, prefix, "", false)
+func RemovePrefixItems(list []string, prefix string) []string {
+	return RemovePrefixAndOrSuffixItems(list, prefix, "", false)
 }
 
-func (*Helper) RemovePrefixAndOrSuffixItems(list []string, prefix string, postfix string, both bool) []string {
+func RemovePrefixAndOrSuffixItems(list []string, prefix string, postfix string, both bool) []string {
 	var listItem []string
 
 	if both {

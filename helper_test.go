@@ -1,20 +1,18 @@
-package helperLibrary
+package helper
 
 import (
 	"testing"
 )
 
-var helper Helper
-
 func TestKnownResult(t *testing.T) {
-	result := helper.KnownResult()
+	result := KnownResult()
 	if result != "known" {
 		t.Error("This is not the known result, test failed!")
 	}
 }
 
 func TestNewFunction(t *testing.T) {
-	result := helper.GetSomeCoolResult()
+	result := GetSomeCoolResult()
 	if result != "expectation" {
 		t.Error("This test has failed expectations!")
 	}
@@ -32,7 +30,7 @@ func TestIgnoreTheseValues(t *testing.T) {
 	ignoreTheseItems = append(ignoreTheseItems, "2ndValue")
 	ignoreTheseItems = append(ignoreTheseItems, "thisThing")
 
-	result := helper.FilterIgnoreList(list, ignoreTheseItems)
+	result := FilterIgnoreList(list, ignoreTheseItems)
 
 	if len(result) != 2 {
 		t.Error("The list has an incorrect number of items.")
@@ -42,7 +40,7 @@ func TestIgnoreTheseValues(t *testing.T) {
 func TestBuildArrayFromCsv(t *testing.T) {
 	var theCommaSeparatedValues = "value1 ,2, 3,7,6, anotherValue"
 
-	result := helper.BuildArrayFromCsv(theCommaSeparatedValues)
+	result := BuildArrayFromCsv(theCommaSeparatedValues)
 
 	if result[0] != "value1" {
 		t.Error("The first value is not correct.")
@@ -74,7 +72,7 @@ func TestRemoveListOneFromListTwo(t *testing.T){
 	listTwo := []string{"table3","table6"}
 	expectedList := []string{"table1","table2","table4","table5"}
 
-	result := helper.RemoveListOneFromListTwo(listOne, listTwo)
+	result := RemoveListOneFromListTwo(listOne, listTwo)
 
 	if len(expectedList) != len(result) {
 		t.Errorf("The expected item count is %v but the returned list item count is %v.", len(expectedList), len(result))
@@ -86,7 +84,7 @@ func TestRemovePrefixItems(t *testing.T) {
 	prefixToRemove := "PrefaceText"
 	expectedResult := []string {"theRemainingItem"}
 
-	result := helper.RemoveItemsWithPrefixFromList(list, prefixToRemove)
+	result := RemoveItemsWithPrefixFromList(list, prefixToRemove)
 
 	if len(expectedResult) != len(result) {
 		t.Errorf("The expected item count is %v but the returned list item count is %v.", len(expectedResult), len(result))
@@ -101,7 +99,7 @@ func TestRemovePostfixItems(t *testing.T) {
 	postfixToRemove := "PostfixStuff"
 	expectedResult := []string {"theRemainingItem","PrefaceText-8dd410fa-fb47-4f08-bbdf-6829f83935fe","PrefaceText-8dd410fa-fb47-4f08-bbdf-6829f83935fe-ButNoPostCar"}
 
-	result := helper.RemoveItemsWithPostfixFromList(list, postfixToRemove)
+	result := RemoveItemsWithPostfixFromList(list, postfixToRemove)
 
 	if len(expectedResult) != len(result) {
 		t.Errorf("The expected item count is %v but the returned list item count is %v.", len(expectedResult), len(result))
@@ -120,7 +118,7 @@ func TestRemoveItemsWithPrefixAndSuffix(t *testing.T) {
 	prefix := "PrefaceText"
 	postfix := "PostfixStuff"
 
-	result := helper.RemovePrefixAndOrSuffixItems(list, prefix, postfix, true)
+	result := RemovePrefixAndOrSuffixItems(list, prefix, postfix, true)
 
 	if result[0] != expectedResult[0] {
 		t.Errorf("The expected result %v is not the result received %v.", expectedResult[0], result[0])
@@ -133,7 +131,7 @@ func TestRemoveItemsWithPrefix(t *testing.T){
 
 	prefix := "PrefaceText"
 
-	result := helper.RemovePrefixItems(list, prefix)
+	result := RemovePrefixItems(list, prefix)
 
 	if result[0] != expectedResult[0] {
 		t.Errorf("The expected result %v is not the result received %v.", expectedResult[0], result[0])
